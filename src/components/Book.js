@@ -2,6 +2,7 @@ import React from 'react';
 
 const Book = ({data, change}) => {
   const {id, title, authors, imageLinks} = data;
+
   return (
     <div className='book'>
       <div className='book-top'>
@@ -19,9 +20,7 @@ const Book = ({data, change}) => {
               change(id, event.target.value);
             }}
           >
-            <option value='move' disabled>
-              Move to...
-            </option>
+            <option value='move'>Move to...</option>
             <option value='currentlyReading'>Currently Reading</option>
             <option value='wantToRead'>Want to Read</option>
             <option value='read'>Read</option>
