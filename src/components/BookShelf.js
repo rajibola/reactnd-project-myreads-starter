@@ -18,14 +18,7 @@ const BookShelf = ({title, data, changeShelf}) => {
         <ol className='books-grid'>
           {filteredData.map((data) => (
             <li key={data.id}>
-              <Book
-                data={data}
-                // title={title}
-                // authors={authors}
-                // imageURL={imageLinks.thumbnail}
-                change={changeShelf}
-                // id={id}
-              />
+              <Book data={data} change={changeShelf} />
             </li>
           ))}
         </ol>

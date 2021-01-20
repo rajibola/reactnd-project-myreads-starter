@@ -22,6 +22,14 @@ class BooksApp extends React.Component {
     });
   }
 
+  updateShelf = (id) => {
+    BooksAPI.get(id).then((book) =>
+      this.setState((oldState) => ({
+        books: [...oldState.books, book],
+      }))
+    );
+  };
+
   changeShelf = (id, shelf) => {
     let item = this.state.books.find((data) => data.id === id);
     this.setState((oldArray) => ({
@@ -37,7 +45,10 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className='app'>
-        <Route path='/search' component={SearchField} />
+        <Route
+          path='/search'
+          render={() => <SearchField updateLocal={this.updateShelf} />}
+        />
 
         <Route
           exact

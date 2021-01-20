@@ -22,6 +22,7 @@ class SearchField extends React.Component {
 
   handleShelf = (id, shelf) => {
     BooksAPI.update(id, shelf);
+    this.props.updateLocal(id);
   };
 
   renderSearchResults() {
