@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Book = ({title, authors, imageURL, change}) => {
-  console.log('HELLO', change);
+const Book = ({data, change}) => {
+  const {id, title, authors, imageLinks} = data;
   return (
     <div className='book'>
       <div className='book-top'>
@@ -10,17 +10,16 @@ const Book = ({title, authors, imageURL, change}) => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${imageURL})`,
+            backgroundImage: `url(${imageLinks.thumbnail})`,
           }}
         />
         <div className='book-shelf-changer'>
           <select
             onChange={(event) => {
-              change(title, event.target.value.toLowerCase());
-              event.preventDefault();
+              change(id, event.target.value);
             }}
           >
-            <option value='move' disabled selected='true'>
+            <option value='move' disabled>
               Move to...
             </option>
             <option value='currentlyReading'>Currently Reading</option>

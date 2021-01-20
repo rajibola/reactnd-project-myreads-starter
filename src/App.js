@@ -8,12 +8,6 @@ import SearchField from './components/SearchField';
 class BooksApp extends React.Component {
   state = {
     books: [],
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
   };
 
   componentDidMount() {
@@ -26,14 +20,16 @@ class BooksApp extends React.Component {
     });
   }
 
-  changeShelf = (name, shelf) => {
-    let newArray = this.state.books.filter(({title}) => title !== name);
-    let item = this.state.books.find(({title}) => title === name);
-    this.setState(() => ({
-      books: [...newArray, {...item, shelf: shelf}],
+  changeShelf = (id, shelf) => {
+    let item = this.state.books.find((data) => data.id === id);
+    this.setState((oldArray) => ({
+      books: [
+        ...oldArray.books.filter((data) => data.id !== id),
+        {...item, shelf: shelf},
+      ],
     }));
 
-    console.log('FUNCTION RAN');
+    BooksAPI.update(id, shelf);
   };
 
   render() {

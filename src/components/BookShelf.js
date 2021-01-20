@@ -16,13 +16,15 @@ const BookShelf = ({title, data, changeShelf}) => {
       <h2 className='bookshelf-title'>{title}</h2>
       <div className='bookshelf-books'>
         <ol className='books-grid'>
-          {filteredData.map(({title, authors, imageLinks}) => (
-            <li key={title}>
+          {filteredData.map((data) => (
+            <li key={data.id}>
               <Book
-                title={title}
-                authors={authors}
-                imageURL={imageLinks.thumbnail}
+                data={data}
+                // title={title}
+                // authors={authors}
+                // imageURL={imageLinks.thumbnail}
                 change={changeShelf}
+                // id={id}
               />
             </li>
           ))}
