@@ -16,11 +16,14 @@ const Book = ({data, change}) => {
         />
         <div className='book-shelf-changer'>
           <select
+            defaultValue='move'
             onChange={(event) => {
               change(id, event.target.value);
             }}
           >
-            <option value='move'>Move to...</option>
+            <option value='move' disabled>
+              Move to...
+            </option>
             <option value='currentlyReading'>Currently Reading</option>
             <option value='wantToRead'>Want to Read</option>
             <option value='read'>Read</option>
