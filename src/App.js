@@ -1,4 +1,5 @@
 import React from 'react';
+import {Route, Link} from 'react-router-dom';
 // import * as BooksAPI from './BooksAPI'
 import './App.css';
 import BookShelf from './components/BookShelf';
@@ -12,35 +13,34 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false,
   };
 
   render() {
     return (
       <div className='app'>
-        {this.state.showSearchPage ? (
-          <SearchField
-            onClickBack={() => this.setState({showSearchPage: false})}
-          />
-        ) : (
-          <div className='list-books'>
-            <div className='list-books-title'>
-              <h1>MyReads</h1>
-            </div>
-            <div className='list-books-content'>
-              <div>
-                <BookShelf title='Currently Reading' data={Currently} />
-                <BookShelf title='Want to Read' data={Wants} />
-                <BookShelf title='Read' data={Read} />
+        <Route path='/search' component={SearchField} />
+
+        <Route
+          exact
+          path='/'
+          render={() => (
+            <div className='list-books'>
+              <div className='list-books-title'>
+                <h1>MyReads</h1>
               </div>
+              <div className='list-books-content'>
+                <div>
+                  <BookShelf title='Currently Reading' data={Currently} />
+                  <BookShelf title='Want to Read' data={Wants} />
+                  <BookShelf title='Read' data={Read} />
+                </div>
+              </div>
+              <Link to='/search' className='open-search'>
+                <button>Add a book</button>
+              </Link>
             </div>
-            <div className='open-search'>
-              <button onClick={() => this.setState({showSearchPage: true})}>
-                Add a book
-              </button>
-            </div>
-          </div>
-        )}
+          )}
+        />
       </div>
     );
   }
