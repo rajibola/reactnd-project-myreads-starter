@@ -1,12 +1,13 @@
 import React from 'react';
 import {Route, Link} from 'react-router-dom';
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI';
 import './App.css';
 import BookShelf from './components/BookShelf';
 import SearchField from './components/SearchField';
 
 class BooksApp extends React.Component {
   state = {
+    books: [],
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -14,6 +15,16 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
   };
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState(() => ({
+        books,
+      }));
+
+      console.log(books);
+    });
+  }
 
   render() {
     return (
@@ -30,9 +41,12 @@ class BooksApp extends React.Component {
               </div>
               <div className='list-books-content'>
                 <div>
-                  <BookShelf title='Currently Reading' data={Currently} />
-                  <BookShelf title='Want to Read' data={Wants} />
-                  <BookShelf title='Read' data={Read} />
+                  <BookShelf
+                    title='Currently Reading'
+                    data={this.state.books}
+                  />
+                  <BookShelf title='Want to Read' data={this.state.books} />
+                  <BookShelf title='Read' data={this.state.books} />
                 </div>
               </div>
               <Link to='/search' className='open-search'>

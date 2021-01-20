@@ -1,15 +1,27 @@
 import React from 'react';
 import Book from './Book';
 
-const BookShelf = ({title, data}) => {
+const BookShelf = ({title, data, shelfName}) => {
+  const filteredData = data.filter(
+    ({shelf}) =>
+      shelf.toLowerCase() ===
+      title
+        .toLowerCase()
+        .split(' ')
+        .join('')
+  );
   return (
     <div className='bookshelf'>
       <h2 className='bookshelf-title'>{title}</h2>
       <div className='bookshelf-books'>
         <ol className='books-grid'>
-          {data.map(({title, authors, imageURL}) => (
+          {filteredData.map(({title, authors, imageLinks}) => (
             <li>
-              <Book title={title} authors={authors} imageURL={imageURL} />
+              <Book
+                title={title}
+                authors={authors}
+                imageURL={imageLinks.thumbnail}
+              />
             </li>
           ))}
         </ol>
