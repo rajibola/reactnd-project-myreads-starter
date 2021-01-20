@@ -25,7 +25,9 @@ const Book = ({title, authors, imageURL}) => {
         </div>
       </div>
       <div className='book-title'>{title}</div>
-      <div className='book-authors'>{authors}</div>
+      {authors.map((author) => (
+        <div className='book-authors'>{author}</div>
+      ))}
     </div>
   );
 };
