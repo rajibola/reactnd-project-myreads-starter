@@ -5,6 +5,8 @@ import './App.css';
 import BookShelf from './components/BookShelf';
 import SearchField from './components/SearchField';
 
+const categories = ['Currently Reading', 'Want to Read', 'Read'];
+
 class BooksApp extends React.Component {
   state = {
     books: [],
@@ -47,21 +49,14 @@ class BooksApp extends React.Component {
               </div>
               <div className='list-books-content'>
                 <div>
-                  <BookShelf
-                    title='Currently Reading'
-                    data={this.state.books}
-                    changeShelf={this.changeShelf}
-                  />
-                  <BookShelf
-                    title='Want to Read'
-                    data={this.state.books}
-                    changeShelf={this.changeShelf}
-                  />
-                  <BookShelf
-                    title='Read'
-                    data={this.state.books}
-                    changeShelf={this.changeShelf}
-                  />
+                  {categories.map((category) => (
+                    <BookShelf
+                      title={category}
+                      data={this.state.books}
+                      changeShelf={this.changeShelf}
+                      key={category}
+                    />
+                  ))}
                 </div>
               </div>
               <Link to='/search' className='open-search'>
