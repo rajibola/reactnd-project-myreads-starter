@@ -3,6 +3,8 @@ import React from 'react';
 const Book = ({data, change}) => {
   const {id, title, authors, imageLinks} = data;
 
+  const imageThumb = imageLinks ? imageLinks.smallThumbnail : null;
+
   return (
     <div className='book'>
       <div className='book-top'>
@@ -11,12 +13,12 @@ const Book = ({data, change}) => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${imageLinks.thumbnail})`,
+            backgroundImage: `url(${imageThumb})`,
           }}
         />
         <div className='book-shelf-changer'>
           <select
-            defaultValue='move'
+            value={data.shelf}
             onChange={(event) => {
               change(id, event.target.value);
             }}
@@ -32,11 +34,12 @@ const Book = ({data, change}) => {
         </div>
       </div>
       <div className='book-title'>{title}</div>
-      {authors.map((author) => (
-        <div key={author} className='book-authors'>
-          {author}
-        </div>
-      ))}
+      {authors &&
+        authors.map((author) => (
+          <div key={author} className='book-authors'>
+            {author}
+          </div>
+        ))}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import {Route, Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 import BookShelf from './components/BookShelf';
-import SearchField from './components/SearchField';
+import SearchField from './components/SearchField.js';
 
 const categories = ['Currently Reading', 'Want to Read', 'Read'];
 
