@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Book = ({title, authors, imageURL}) => {
+const Book = ({title, authors, imageURL, change}) => {
+  console.log('HELLO', change);
   return (
     <div className='book'>
       <div className='book-top'>
@@ -13,8 +14,13 @@ const Book = ({title, authors, imageURL}) => {
           }}
         />
         <div className='book-shelf-changer'>
-          <select>
-            <option value='move' disabled>
+          <select
+            onChange={(event) => {
+              change(title, event.target.value.toLowerCase());
+              event.preventDefault();
+            }}
+          >
+            <option value='move' disabled selected='true'>
               Move to...
             </option>
             <option value='currentlyReading'>Currently Reading</option>
@@ -26,7 +32,9 @@ const Book = ({title, authors, imageURL}) => {
       </div>
       <div className='book-title'>{title}</div>
       {authors.map((author) => (
-        <div className='book-authors'>{author}</div>
+        <div key={author} className='book-authors'>
+          {author}
+        </div>
       ))}
     </div>
   );

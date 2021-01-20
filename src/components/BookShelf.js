@@ -1,7 +1,7 @@
 import React from 'react';
 import Book from './Book';
 
-const BookShelf = ({title, data, shelfName}) => {
+const BookShelf = ({title, data, changeShelf}) => {
   const filteredData = data.filter(
     ({shelf}) =>
       shelf.toLowerCase() ===
@@ -10,17 +10,19 @@ const BookShelf = ({title, data, shelfName}) => {
         .split(' ')
         .join('')
   );
+
   return (
     <div className='bookshelf'>
       <h2 className='bookshelf-title'>{title}</h2>
       <div className='bookshelf-books'>
         <ol className='books-grid'>
           {filteredData.map(({title, authors, imageLinks}) => (
-            <li>
+            <li key={title}>
               <Book
                 title={title}
                 authors={authors}
                 imageURL={imageLinks.thumbnail}
+                change={changeShelf}
               />
             </li>
           ))}
