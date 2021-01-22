@@ -43,6 +43,9 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className='app'>
+        <div className='list-books-title'>
+          <h1>MyReads</h1>
+        </div>
         <Route
           path='/search'
           render={() => (
@@ -58,9 +61,6 @@ class BooksApp extends React.Component {
           path='/'
           render={() => (
             <div className='list-books'>
-              <div className='list-books-title'>
-                <h1>MyReads</h1>
-              </div>
               <div className='list-books-content'>
                 <div>
                   {categories.map((category) => (
