@@ -33,14 +33,15 @@ class SearchField extends React.Component {
         <div>No results found</div>
       ) : (
         books.map((book, index) => {
-          return (
-            <Book
-              key={index}
-              data={book}
-              change={this.handleShelf}
-              // handleBookShelf={this.handleBookShelf.bind(this)}
-            />
+          const oldBook = this.props.homeData.filter(
+            (arr) => arr.id === book.id
           );
+          if (oldBook) {
+            book.shelf = oldBook[0] && oldBook[0].shelf;
+          } else {
+            return book;
+          }
+          return <Book key={index} data={book} change={this.handleShelf} />;
         })
       );
     }

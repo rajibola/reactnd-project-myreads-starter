@@ -17,8 +17,6 @@ class BooksApp extends React.Component {
       this.setState(() => ({
         books,
       }));
-
-      console.log(books);
     });
   }
 
@@ -47,7 +45,12 @@ class BooksApp extends React.Component {
       <div className='app'>
         <Route
           path='/search'
-          render={() => <SearchField updateLocal={this.updateShelf} />}
+          render={() => (
+            <SearchField
+              updateLocal={this.updateShelf}
+              homeData={this.state.books}
+            />
+          )}
         />
 
         <Route
