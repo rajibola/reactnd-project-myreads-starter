@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from '../BooksAPI';
 import Book from './Book';
+import box from '../icons/box.svg';
 
 class SearchField extends React.Component {
   constructor() {
@@ -30,7 +31,10 @@ class SearchField extends React.Component {
 
     if (query) {
       return books.error ? (
-        <div>No results found</div>
+        <div>
+          <img src={box} alt='box.svg' />
+          <div className='warning-text'>No results found</div>
+        </div>
       ) : (
         books.map((book, index) => {
           const oldBook = this.props.homeData.filter(

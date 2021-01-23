@@ -16,15 +16,25 @@ body,
 /* main page */
 
 .list-books-title {
-  padding: 10px 0;
-  background: #2e7c31;
+  padding: 8px 30px;
+  background: #ececec;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-books-title img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
 }
 
 .list-books-title h1 {
-  font-weight: 400;
+  font-weight: lighter;
   margin: 0;
-  color: white;
+  color: #2c3e50;
+  position: sticky;
 }
 
 .list-books-content {
@@ -44,6 +54,10 @@ body,
 
 .bookshelf-title {
   border-bottom: 1px solid #dedede;
+  font-weight: 100;
+  text-align: center;
+  color: #2c3e50;
+  text-transform: uppercase;
 }
 
 .bookshelf-books {
@@ -52,20 +66,32 @@ body,
 
 .open-search {
   position: fixed;
-  right: 25px;
-  bottom: 25px;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50px;
+  background: linear-gradient(145deg, #2f4256, #283848);
+  box-shadow: 5px 5px 10px #dcdfe2, -5px -5px 10px #dcdfe2;
+  transition: all 0.15s ease;
 }
 
-.open-search button {
+.open-search:hover {
+  border-radius: 50px;
+  background: linear-gradient(145deg, #283848, #2f4256);
+  box-shadow: 5px 5px 10px #dcdfe2, -5px -5px 10px #dcdfe2;
+}
+
+.open-search div {
   display: block;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #2e7d32;
   background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 28px;
+  background-size: 20px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   font-size: 0;
   outline: 0;
@@ -83,7 +109,9 @@ body,
   left: 0;
   z-index: 5;
   display: flex;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 1.5px rgba(0, 0, 0, 0.12),
+    0 4px 2px rgba(0, 0, 0, 0.12), 0 4px 2.5px rgba(0, 0, 0, 0.12),
+    0 5px 6px rgba(225, 225, 225, 0.12);
 }
 
 .search-books-input-wrapper {
@@ -139,8 +167,24 @@ button:active {
   text-align: left;
 }
 
+.books-grid div {
+  align-items: center;
+  text-align: right;
+}
+
+.books-grid div img {
+  width: 250px;
+  height: 250px;
+}
+
+.warning-text {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
 .book {
-  width: 140px;
+  width: 120px;
+  margin: 0 10px;
 }
 
 .book-title,
@@ -149,7 +193,9 @@ button:active {
 }
 
 .book-title {
-  margin-top: 10px;
+  margin-top: 5px;
+  font-size: small;
+  font-weight: 600;
 }
 
 .book-authors {
@@ -165,7 +211,7 @@ button:active {
 
 .book-shelf-changer {
   position: absolute;
-  bottom: 0px;
+  bottom: 3px;
   width: 20px;
   height: 20px;
   border-radius: 0 2px 0 0;

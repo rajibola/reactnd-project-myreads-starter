@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI';
 import './App.css';
 import BookShelf from './components/BookShelf';
 import SearchField from './components/SearchField.js';
+import books from './icons/books.svg';
 
 const categories = ['Currently Reading', 'Want to Read', 'Read'];
 
@@ -44,6 +45,7 @@ class BooksApp extends React.Component {
     return (
       <div className='app'>
         <div className='list-books-title'>
+          <img src={books} alt='books.svg' />
           <h1>MyReads</h1>
         </div>
         <Route
@@ -74,7 +76,7 @@ class BooksApp extends React.Component {
                 </div>
               </div>
               <Link to='/search' className='open-search'>
-                <button>Add a book</button>
+                <div />
               </Link>
             </div>
           )}
