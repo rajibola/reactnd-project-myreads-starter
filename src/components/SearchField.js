@@ -31,8 +31,7 @@ class SearchField extends React.Component {
   };
 
   handleShelf = (id, shelf) => {
-    BooksAPI.update(id, shelf);
-    this.props.updateLocal(id);
+    this.props.changeShelf(id, shelf);
   };
 
   renderSearchResults() {
@@ -52,9 +51,18 @@ class SearchField extends React.Component {
           if (oldBook) {
             book.shelf = oldBook[0] && oldBook[0].shelf;
           }
+          if (!oldBook.length) {
+            book.shelf = 'none';
+          }
           return <Book key={index} data={book} change={this.handleShelf} />;
         })
       );
+    } else {
+      BooksAPI.getAll().then((shelvedBooks) => {
+        this.setState(() => ({
+          shelvedBooks,
+        }));
+      });
     }
   }
 
