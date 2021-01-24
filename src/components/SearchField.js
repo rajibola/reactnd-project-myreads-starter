@@ -42,16 +42,16 @@ class SearchField extends React.Component {
         </div>
       ) : (
         books.map((book, index) => {
-          const oldBook = this.state.shelvedBooks.filter(
+          const oldBook = this.state.shelvedBooks.find(
             (arr) => arr.id === book.id
           );
-          if (oldBook) {
-            book.shelf = oldBook[0] && oldBook[0].shelf;
-          }
-          if (!oldBook.length) {
-            book.shelf = 'none';
-          }
-          return <Book key={index} data={book} change={this.handleShelf} />;
+          return (
+            <Book
+              key={book.id}
+              data={{...book, shelf: oldBook ? oldBook.shelf : 'none'}}
+              change={this.handleShelf}
+            />
+          );
         })
       );
     }
