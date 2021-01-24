@@ -14,12 +14,9 @@ class SearchField extends React.Component {
     };
   }
 
-  componentDidMount() {
-    BooksAPI.getAll().then((shelvedBooks) => {
-      this.setState(() => ({
-        shelvedBooks,
-      }));
-    });
+  async componentDidMount() {
+    const shelvedBooks = await BooksAPI.getAll();
+    this.setState({shelvedBooks});
   }
 
   handleText = (query) => {
@@ -31,7 +28,6 @@ class SearchField extends React.Component {
   };
 
   handleShelf = (id, shelf) => {
-    // this.props.updateLocal(id);
     this.props.changeShelf(id, shelf);
   };
 
@@ -58,12 +54,6 @@ class SearchField extends React.Component {
           return <Book key={index} data={book} change={this.handleShelf} />;
         })
       );
-    } else {
-      BooksAPI.getAll().then((shelvedBooks) => {
-        this.setState(() => ({
-          shelvedBooks,
-        }));
-      });
     }
   }
 
