@@ -8,9 +8,18 @@ class SearchField extends React.Component {
   constructor() {
     super();
     this.state = {
+      shelvedBooks: [],
       books: [],
       query: '',
     };
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((shelvedBooks) => {
+      this.setState(() => ({
+        shelvedBooks,
+      }));
+    });
   }
 
   handleText = (query) => {
@@ -37,13 +46,11 @@ class SearchField extends React.Component {
         </div>
       ) : (
         books.map((book, index) => {
-          const oldBook = this.props.homeData.filter(
+          const oldBook = this.state.shelvedBooks.filter(
             (arr) => arr.id === book.id
           );
           if (oldBook) {
             book.shelf = oldBook[0] && oldBook[0].shelf;
-          } else {
-            return book;
           }
           return <Book key={index} data={book} change={this.handleShelf} />;
         })

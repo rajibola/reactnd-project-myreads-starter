@@ -22,11 +22,14 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (id) => {
-    BooksAPI.get(id).then((book) =>
+    BooksAPI.get(id).then((newbook) => {
       this.setState((oldState) => ({
-        books: [...oldState.books, book],
-      }))
-    );
+        books: [
+          ...oldState.books.filter((book) => book.id !== id),
+          {...newbook},
+        ],
+      }));
+    });
   };
 
   changeShelf = (id, shelf) => {
@@ -50,12 +53,7 @@ class BooksApp extends React.Component {
         </div>
         <Route
           path='/search'
-          render={() => (
-            <SearchField
-              updateLocal={this.updateShelf}
-              homeData={this.state.books}
-            />
-          )}
+          render={() => <SearchField updateLocal={this.updateShelf} />}
         />
 
         <Route
