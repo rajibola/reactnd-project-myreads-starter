@@ -31,6 +31,7 @@ class SearchField extends React.Component {
   };
 
   handleShelf = (id, shelf) => {
+    // this.props.updateLocal(id);
     this.props.changeShelf(id, shelf);
   };
 

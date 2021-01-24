@@ -13,13 +13,19 @@ class BooksApp extends React.Component {
     books: [],
   };
 
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState(() => ({
-        books,
-      }));
-    });
+  async componentDidMount() {
+    const books = await BooksAPI.getAll();
+    this.setState({books});
   }
+
+  updateShelf = async (id, shelf) => {
+    await BooksAPI.update(id, shelf);
+    const newItem = await BooksAPI.get(id);
+
+    this.setState((oldArray) => ({
+      books: [...oldArray.books.filter((data) => data.id !== id), {...newItem}],
+    }));
+  };
 
   changeShelf = (id, shelf) => {
     let item = this.state.books.find((data) => data.id === id);
@@ -42,7 +48,7 @@ class BooksApp extends React.Component {
         </div>
         <Route
           path='/search'
-          render={() => <SearchField changeShelf={this.changeShelf} />}
+          render={() => <SearchField changeShelf={this.updateShelf} />}
         />
 
         <Route
