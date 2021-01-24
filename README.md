@@ -49,6 +49,7 @@ To get started developing right away:
         ├── BookShelf.js
         └── SearchField.js
 ```
+NB: `books.svg` and `box.svg` are gotten from [flaticon.com](https://www.flaticon.com)
 
 Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
 
